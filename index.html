@@ -4,12 +4,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section id="start">Begin Assesment</section>
+    <div id="start">Begin Assesment</div>
     <section id="assesment">
+        <section id="question">
+            <p>Question</p>
+        </section>
+        <section id="timer">
+            <div id="counter"> 10</div>
+        </section>
+        <section id="choices">
+            <div class="choice" id="a" onclick="checkAns('A')">A</div>
+            <div class="choice" id="b" onclick="checkAns('B')">B</div>
+            <div class="choice" id="c" onclick="checkAns('C')">C</div>
+            <div class="choice" id="d" onclick="checkAns('D')">D</div>
+        </section>
 
     </section>
     <section id="assessor">
-        <img src="">
+        <p>100%</p>
     </section>
 <script src="javascript.js"></script>
 </body>
