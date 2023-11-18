@@ -50,7 +50,7 @@ var questions = [
         choiceA: "&&",
         choiceB: "^^",
         choiceC: "@@",
-        choiceD: "",
+        choiceD: "''",
         answer: "A"
     },
     {
@@ -94,3 +94,31 @@ var questions = [
         answer: "B"
     }
 ]
+
+var lastQuestionIndex = questions.length -1;
+
+var currentQuestionIndex = 0;
+
+function showQuestion () {
+    var q = question[currentQuestionIndex];
+    question.innerHTML = "<p>" + q.question + "</p>";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
+
+}
+
+var questionTime = 10;
+var count = 0;
+function counter {
+    if (count <= questionTime){
+        count ++;
+    }
+    else {
+        count = 0;
+    }
+}
+var questionTimer = setInterval(counter, 1000);
+
+
