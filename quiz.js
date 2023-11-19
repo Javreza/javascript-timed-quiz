@@ -6,20 +6,21 @@ const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
+const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 
 // create our questions
-let questions = [
+var questions = [
     {
         question: "What does querySelector() do?",
         choiceA: "It selects the first element from the document that matches a specified  CSS id or class tag.",
         choiceB: "The method allows users to select in what order to execute code.",
         choiceC: "It choses the last element that matches the indicated id tag.",
         choiceD: "It allows you to see the runtimes of selected functions.",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "What does console.log() do?",
@@ -27,7 +28,7 @@ let questions = [
         choiceB: "Outputs whatever it indicated to output within its parentheses.",
         choiceC: "It is a method used to change the theme of a browser for any user.",
         choiceD: "This method allows to adjust the framerate of the computer.",
-        answer: "B"
+        correct: "B"
     },
     {
         question: "What are event listeners used for?",
@@ -35,7 +36,7 @@ let questions = [
         choiceB: "They can typically check if hardware in a computer has been updated.",
         choiceC: "They log whether or not a type of input has occured on an indicated element.",
         choiceD: "It allows you to see the runtimes of selected functions.",
-        answer: "C"
+        correct: "C"
     },
     {
         question: "What is the logical operator for 'OR' in JavaScript?",
@@ -43,7 +44,7 @@ let questions = [
         choiceB: "%%",
         choiceC: "==",
         choiceD: "||",
-        answer: "D"
+        correct: "D"
     },
     {
         question: "What is the logical operator for 'AND' in Javascript?",
@@ -51,7 +52,7 @@ let questions = [
         choiceB: "^^",
         choiceC: "@@",
         choiceD: "",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "What is the value of the following variable? var bool = !(!true) || !((!false));",
@@ -59,7 +60,7 @@ let questions = [
         choiceB: "false",
         choiceC: "not true",
         choiceD: "Cannot be determined.",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "How could you make an html file reference a javascript file titled 'scripted'?",
@@ -67,7 +68,7 @@ let questions = [
         choiceB: "<script rel='scripted' src='javascript.js'></script>",
         choiceC: "<script src='javascript.js'></script>",
         choiceD: "<script src='scripted.js'></script>",
-        answer: "D"
+        correct: "D"
     },
     {
         question: "What method would you use to alter the styling of an element with JavaScript?",
@@ -75,7 +76,7 @@ let questions = [
         choiceB: ".setElementStyle()",
         choiceC: ".alterElement()",
         choiceD: ".styleAttributes()",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "What method what you use to select the second child of an element?",
@@ -83,7 +84,7 @@ let questions = [
         choiceB: "element.children[2]",
         choiceC: "element.child[1]",
         choiceD: "element.child[2]",
-        answer: "A"
+        correct: "A"
     },
     {
         question: "What opening/closing pair would you use to establish an array??",
@@ -91,7 +92,7 @@ let questions = [
         choiceB: "[]",
         choiceC: "{}",
         choiceD: "*//*",
-        answer: "B"
+        correct: "B"
     }
 ]
 
@@ -115,8 +116,8 @@ function renderQuestion(){
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
 }
-
 
 start.addEventListener("click",startQuiz);
 
@@ -201,15 +202,36 @@ function scoreRender(){
     const scorePerCent = Math.round(100 * score/questions.length);
     
     // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "Excellent!" :
-              (scorePerCent >= 60) ? "Passing." :
-              (scorePerCent >= 40) ? "Not Good." :
-              (scorePerCent >= 20) ? "You bombed." :
-              "You really bombed.";
+    let img = (scorePerCent >= 80) ? "img/5.png" :
+              (scorePerCent >= 60) ? "img/4.png" :
+              (scorePerCent >= 40) ? "img/3.png" :
+              (scorePerCent >= 20) ? "img/2.png" :
+              "img/1.png";
     
-    // scoreDiv.innerHTML = "<img src="+ img +">";
+    scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
