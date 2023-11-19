@@ -2,7 +2,6 @@
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
-const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
@@ -112,7 +111,6 @@ function renderQuestion(){
     let q = questions[runningQuestion];
     
     question.innerHTML = "<p>"+ q.question +"</p>";
-    qImg.innerHTML = "<img src="+ q.imgSrc +">";
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
@@ -202,13 +200,13 @@ function scoreRender(){
     const scorePerCent = Math.round(100 * score/questions.length);
     
     // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "img/5.png" :
-              (scorePerCent >= 60) ? "img/4.png" :
-              (scorePerCent >= 40) ? "img/3.png" :
-              (scorePerCent >= 20) ? "img/2.png" :
-              "img/1.png";
+    let scoreComment = (scorePerCent >= 80) ? "Excellent!" :
+              (scorePerCent >= 60) ? "You passed!" :
+              (scorePerCent >= 40) ? "Next time will be better." :
+              (scorePerCent >= 20) ? "You bombed." :
+              "You REALLY bombed.";
     
-    scoreDiv.innerHTML = "<img src="+ img +">";
+    scoreDiv.innerHTML = "<p><br/><br/>"+ scoreComment +"</p>";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 }
 
