@@ -7,7 +7,6 @@ const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
-// const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 
@@ -100,9 +99,8 @@ var questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 10;
-const questionTime = 0; // 10s
-const gaugeWidth = 150; // 150px
-const gaugeUnit = gaugeWidth / questionTime;
+const questionTimeOut = 0; // 10s
+const questionTime = 10;
 let TIMER;
 let score = 0;
 
@@ -139,24 +137,25 @@ function renderProgress(){
 // counter render
 
 function renderCounter(){
-    if(count > questionTime){
-        counter.innerHTML = count;
-        // timeGauge.style.width = count * gaugeUnit + "px";
-        count--;
-    }else{
-        count = 10;
-        // change progress color to red
-        answerIsWrong();
-        if(runningQuestion < lastQuestion){
-            runningQuestion++;
-            renderQuestion();
+        if(count >= questionTimeOut){
+            counter.innerHTML = count;
+            // timeGauge.style.width = count * gaugeUnit + "px";
+            count--;
         }else{
-            // end the quiz and show the score
-            clearInterval(TIMER);
-            scoreRender();
+            count = questionTime;
+
+            // change progress color to red
+            answerIsWrong();
+            if(runningQuestion < lastQuestion){
+                runningQuestion++;
+                renderQuestion();
+            }else{
+                // end the quiz and show the score
+                clearInterval(TIMER);
+                scoreRender();
+            }
         }
     }
-}
 
 // checkAnwer
 
@@ -171,7 +170,7 @@ function checkAnswer(answer){
         // change progress color to red
         answerIsWrong();
     }
-    count = 0;
+    count = questionTime; 
     if(runningQuestion < lastQuestion){
         runningQuestion++;
         renderQuestion();
