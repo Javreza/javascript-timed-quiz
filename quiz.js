@@ -1,5 +1,6 @@
 // select all elements
 const start = document.getElementById("start");
+const save = document.getElementById("saveScore");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
 const choiceA = document.getElementById("A");
@@ -9,7 +10,7 @@ const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
-
+const highScoresDiv = document.getElementById("highScoresContainer");
 // create our questions
 var questions = [
     {
@@ -104,6 +105,10 @@ const questionTime = 10;
 let TIMER;
 let score = 0;
 
+
+//save.addEventListener("click",saveScore);
+start.addEventListener("click",startQuiz);
+
 // render a question
 function renderQuestion(){
     let q = questions[runningQuestion];
@@ -114,8 +119,6 @@ function renderQuestion(){
     choiceC.innerHTML = q.choiceC;
     choiceD.innerHTML = q.choiceD;
 }
-
-start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
@@ -138,7 +141,7 @@ function renderProgress(){
 
 function renderCounter(){
         if(count >= questionTimeOut){
-            counter.innerHTML = count;
+            counter.innerHTML = count + "seconds left on question " + (runningQuestion+1);
             // timeGauge.style.width = count * gaugeUnit + "px";
             count--;
         }else{
@@ -191,6 +194,25 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
+function saveScore(){
+    var playerName = window.prompt("Please enter name");
+    highScoresDiv.style.display = "block";
+    var highscore = localStorage.getItem(playerName);
+    if(highscore !== null){
+        if (score > highscore) {
+            localStorage.setItem(playerName, score);
+            localStorage.getItem(playerName, score);      
+        }
+    }
+    else{
+        localStorage.setItem(playerName, score);
+        localStorage.getItem(playerName, score);
+    }
+
+    highScoresDiv.innerHTML = "<p>"+playerName+" "+score * 10+"</p>";
+
+}
+
 // score render
 function scoreRender(){
     scoreDiv.style.display = "block";
@@ -205,9 +227,11 @@ function scoreRender(){
               (scorePerCent >= 20) ? "You bombed." :
               "You REALLY bombed.";
     
-    scoreDiv.innerHTML = "<p><br/><br/>"+ scoreComment +"</p>";
+    scoreDiv.innerHTML += "<p><br/><br/>"+ scoreComment +"</p>";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 }
+
+
 
 
 
