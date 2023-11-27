@@ -209,48 +209,27 @@ function saveScore(){
         localStorage.setItem(playerName, score);
         localStorage.getItem(playerName, score);
     }
-
-    
-
     sortScores();
 
+
+    highScoresDiv.innerHTML = "<p>"+playerName+" "+score * 10+"</p>";
+
+    
 }
 
 function sortScores() {
 
     var dictionary = [];
 
-    for(var i = 0; i < localStorage.length; i++){
+    for(var i = 0; i < localStorage.length; i++)
+    {
 
-        if(dictionary.length < 0){
-
-            for(var j = 0; j < dictionary.length; j++){
-
-                if(dictionary[i][1] >= localStorage.getItem(localStorage.key(i))){
-
-                    dictionary.push([localStorage.key(i) , localStorage.getItem(localStorage.key(i))]);
-
-                }
-                if(dictionary[i][1] < localStorage.getItem(localStorage.key(i))){
-
-                    var temp = dictionary[i]
-
-                    dictionary[i] = [localStorage.key(i) , localStorage.getItem(localStorage.key(i))];
-
-                    dictionary.push(temp);
-                    highScoresDiv.innerHTML = "<p>"+playerName+" "+score * 10+"</p>";
-
-                }
-
-            }
-
-        }
-
-        dictionary.push([localStorage.key(i) , localStorage.getItem(localStorage.key(i))]);
-
+        dictionary.push([localStorage.key(i), localStorage.getItem(localStorage.key(i))]);
     }
 
-    console.log(dictionary)
+    dictionary.sort((a,b)=>{return b[1] - a[1]})
+
+    console.log(dictionary);
 
 }
 
