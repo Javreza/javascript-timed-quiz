@@ -1,4 +1,4 @@
-// select all elements
+
 const start = document.getElementById("start");
 const save = document.getElementById("saveScore");
 const quiz = document.getElementById("quiz");
@@ -8,10 +8,8 @@ const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
 const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
-const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 const highScoresDiv = document.getElementById("highScoresContainer");
-// create our questions
 var questions = [
     {
         question: "What does querySelector() do?",
@@ -50,7 +48,7 @@ var questions = [
         choiceA: "&&",
         choiceB: "^^",
         choiceC: "@@",
-        choiceD: "",
+        choiceD: "_-_-",
         correct: "A"
     },
     {
@@ -62,16 +60,16 @@ var questions = [
         correct: "A"
     },
     {
-        question: "How could you make an html file reference a javascript file titled 'scripted'?",
-        choiceA: "'<script rel='scripted.js' src='sripted.js'",
-        choiceB: "<script rel='scripted' src='javascript.js'></script>",
-        choiceC: "<script src='javascript.js'></script>",
-        choiceD: "<script src='scripted.js'></script>",
+        question: "What can innerHTML be used for?",
+        choiceA: "To build a server.",
+        choiceB: "To set javascript variables.",
+        choiceC: "To set an HTML boilerplate.",
+        choiceD: "It can be used to update the html of an element via javascript.",
         correct: "D"
     },
     {
         question: "What method would you use to alter the styling of an element with JavaScript?",
-        choiceA: "'.setAttribute()'",
+        choiceA: ".setAttribute()",
         choiceB: ".setElementStyle()",
         choiceC: ".alterElement()",
         choiceD: ".styleAttributes()",
@@ -94,22 +92,16 @@ var questions = [
         correct: "B"
     }
 ]
-
-// create some variables
-
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 10;
-const questionTimeOut = 0; // 10s
+const questionTimeOut = 0; 
 const questionTime = 10;
 let TIMER;
 let score = 0;
 
-
-//save.addEventListener("click",saveScore);
 start.addEventListener("click",startQuiz);
 
-// render a question
 function renderQuestion(){
     let q = questions[runningQuestion];
     
@@ -120,79 +112,46 @@ function renderQuestion(){
     choiceD.innerHTML = q.choiceD;
 }
 
-// start quiz
 function startQuiz(){
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    // renderProgress();
     renderCounter();
-    TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
+    TIMER = setInterval(renderCounter,1000);
 }
-
-// render progress
-// function renderProgress(){
-//     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-//         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-//     }
-// }
-
-// counter render
 
 function renderCounter(){
         if(count >= questionTimeOut){
             counter.innerHTML = count + " seconds left on question " + (runningQuestion+1);
-            // timeGauge.style.width = count * gaugeUnit + "px";
             count--;
         }else{
             count = questionTime;
 
-            // change progress color to red
-            // answerIsWrong();
             if(runningQuestion < lastQuestion){
                 runningQuestion++;
                 renderQuestion();
             }else{
-                // end the quiz and show the score
                 clearInterval(TIMER);
                 scoreRender();
             }
         }
     }
 
-// checkAnwer
-
 function checkAnswer(answer){
     if( answer == questions[runningQuestion].correct){
-        // answer is correct
         score++;
-        // change progress color to green
-        // answerIsCorrect();
-    }//else{
-    //     // answer is wrong
-    //     // change progress color to red
-    //     answerIsWrong();
-    // }
+
+    }
     count = questionTime; 
     if(runningQuestion < lastQuestion){
         runningQuestion++;
         renderQuestion();
     }else{
-        // end the quiz and show the score
         clearInterval(TIMER);
         scoreRender();
     }
 }
 
-// // answer is correct
-// function answerIsCorrect(){
-//     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-// }
-
-// // answer is Wrong
-// function answerIsWrong(){
-//     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
-// }
 
 function saveScore(){
     var playerName = window.prompt("Please enter name");
@@ -217,23 +176,20 @@ function saveScore(){
 }
 
 function sortScores() {
-
     var dictionary = [];
-
     for(var i = 0; i < localStorage.length; i++)
     {
-
         dictionary.push([localStorage.key(i), localStorage.getItem(localStorage.key(i))]);
     }
-
     dictionary.sort((a,b)=>{return b[1] - a[1]})
-
     console.log(dictionary);
-
     highScoreRender(dictionary);
 }
 
 function highScoreRender(dictionary) {
+
+    scoreDiv.style.display = "none";
+
     highScoresDiv.innerHTML = "<table>"
     highScoresDiv.innerHTML += `<tr><th>NAME</td><th>SCORE</th></tr>`;
     for(var k = 0; k < 10; k++){
@@ -245,19 +201,16 @@ function highScoreRender(dictionary) {
     console.log(highScoresDiv.innerHTML)
 }
 
-// score render
 function scoreRender(){
+    quiz.style.display = "none";
     scoreDiv.style.display = "block";
-    
-    // calculate the amount of question percent answered by the user
     const scorePerCent = Math.round(100 * score/questions.length);
     
-    // choose the image based on the scorePerCent
     let scoreComment = (scorePerCent >= 80) ? "Excellent!" :
-              (scorePerCent >= 60) ? "You passed!" :
-              (scorePerCent >= 40) ? "Next time will be better." :
-              (scorePerCent >= 20) ? "You bombed." :
-              "You REALLY bombed.";
+              (scorePerCent >= 60) ? "Well Done!" :
+              (scorePerCent >= 40) ? "Oof." :
+              (scorePerCent >= 20) ? "Yikes." :
+              "Super Bad.";
     
     scoreDiv.innerHTML += "<p><br/><br/>"+ scoreComment +"</p>";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";

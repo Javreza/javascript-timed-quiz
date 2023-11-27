@@ -86,20 +86,7 @@ body{
     margin: 5px;
     padding: 15px;
 }
-/* #btimeGauge{
-    width : 150px;
-    height : 10px;
-    border-radius: 10px;
-    background-color: lightgray;
-    margin-left : 25px;
-}
-#timeGauge{
-    height : 10px;
-    border-radius: 10px;
-    background-color: mediumseagreen;
-    margin-top : -10px;
-    margin-left : 25px;
-} */
+
 #progress{
     width : 500px;
     position: absolute;
@@ -129,6 +116,14 @@ body{
     display: none;
 }
 
+#highScoresContainer{
+    position: absolute;
+    justify-self: center;
+    justify-content: center;
+    border: 1px solid var(--green);
+    justify-content: center;
+}
+
 #saveScore{
     font-size: 150px;
     font-weight: bolder;
@@ -154,6 +149,8 @@ body{
 #scoreContainer p{
     position: absolute;
     display: block;
+    background-color: white;
+    opacity: 65;
     width : 59px;
     height :59px;
     top:130px;
@@ -165,15 +162,14 @@ body{
     font-size: 1.5em;
     font-weight: bolder;
     word-break: break-all;
-    width:100px;
-    height:150px;
-    border : 2px solid lightgrey;
+
+    border : 2px solid var(--green);
     text-align: center;
     cursor: pointer;
     position: absolute;
     left:300px;
     top:50px;
-    color : lightgrey;
+    color : var(--yellow);
 }
 
 
