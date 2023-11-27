@@ -125,17 +125,17 @@ function startQuiz(){
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
-    renderProgress();
+    // renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
 
 // render progress
-function renderProgress(){
-    for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-        progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-    }
-}
+// function renderProgress(){
+//     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
+//         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+//     }
+// }
 
 // counter render
 
@@ -148,7 +148,7 @@ function renderCounter(){
             count = questionTime;
 
             // change progress color to red
-            answerIsWrong();
+            // answerIsWrong();
             if(runningQuestion < lastQuestion){
                 runningQuestion++;
                 renderQuestion();
@@ -167,12 +167,12 @@ function checkAnswer(answer){
         // answer is correct
         score++;
         // change progress color to green
-        answerIsCorrect();
-    }else{
-        // answer is wrong
-        // change progress color to red
-        answerIsWrong();
-    }
+        // answerIsCorrect();
+    }//else{
+    //     // answer is wrong
+    //     // change progress color to red
+    //     answerIsWrong();
+    // }
     count = questionTime; 
     if(runningQuestion < lastQuestion){
         runningQuestion++;
@@ -184,15 +184,15 @@ function checkAnswer(answer){
     }
 }
 
-// answer is correct
-function answerIsCorrect(){
-    document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-}
+// // answer is correct
+// function answerIsCorrect(){
+//     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+// }
 
-// answer is Wrong
-function answerIsWrong(){
-    document.getElementById(runningQuestion).style.backgroundColor = "#f00";
-}
+// // answer is Wrong
+// function answerIsWrong(){
+//     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+// }
 
 function saveScore(){
     var playerName = window.prompt("Please enter name");
