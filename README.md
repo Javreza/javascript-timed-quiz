@@ -14,3 +14,7 @@ This is how the app opens
 <img width="960" alt="image" src="https://github.com/Javreza/javascript-timed-quiz/assets/20735971/ca8f11af-536a-4369-aead-8aef6aa6f85b">
 A sample question from the quiz.
 
+<img width="960" alt="image" src="https://github.com/Javreza/javascript-timed-quiz/assets/20735971/4d29bcc1-3cf3-417a-82b8-00d1c5555ce4">
+Though it might not be the cleanest, the high score functionality is there.
+
+
