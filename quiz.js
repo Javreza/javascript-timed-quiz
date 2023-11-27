@@ -141,7 +141,7 @@ function startQuiz(){
 
 function renderCounter(){
         if(count >= questionTimeOut){
-            counter.innerHTML = count + "seconds left on question " + (runningQuestion+1);
+            counter.innerHTML = count + " seconds left on question " + (runningQuestion+1);
             // timeGauge.style.width = count * gaugeUnit + "px";
             count--;
         }else{
@@ -235,7 +235,7 @@ function sortScores() {
 
 function highScoreRender(dictionary) {
     highScoresDiv.innerHTML = "<table>"
-    highScoresDiv.innerHTML += `<tr><th>"NAME"</td><td>"SCORE"</td></tr>`;
+    highScoresDiv.innerHTML += `<tr><th>NAME</td><th>SCORE</th></tr>`;
     for(var k = 0; k < 10; k++){
     highScoresDiv.innerHTML += `<tr><td> ${dictionary[k][0]}</td><td>${dictionary[k][1] * 10}</td></tr>`;
 

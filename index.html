@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <title>Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="container">
-        <div id="start">Start Quiz!</div>
+        <div id="start">Begin</div>
         <div id="quiz" style="display: none">
             <div id="question"></div>
-            <div id="choices">
-                <div class="choice" id="A" onclick="checkAnswer('A')"></div>
-                <div class="choice" id="B" onclick="checkAnswer('B')"></div>
-                <div class="choice" id="C" onclick="checkAnswer('C')"></div>
-                <div class="choice" id="D" onclick="checkAnswer('D')"></div>
-            </div>
+            <table id="choices">
+                <tr><td class="choice" id="A" onclick="checkAnswer('A')"></td></tr>
+                <tr><td class="choice" id="B" onclick="checkAnswer('B')"></td></tr>
+                <tr><td class="choice" id="C" onclick="checkAnswer('C')"></td></tr>
+                <tr><td class="choice" id="D" onclick="checkAnswer('D')"></td></tr>
+            </table>
             <div id="timer">
                 <div id="counter"></div>
                 <!-- <div id="btimeGauge"></div>
                 <div id="timeGauge"></div> -->
             </div>
-            <div id="progress"></div>
+            <!-- <div id="progress"></div> -->
         </div>
         <div id="scoreContainer" style="display: none"><div id="saveScore" onclick="saveScore()">Save Score?</div></div>
         <table id ="highScoresContainer" style="display: none;"></table>
