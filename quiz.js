@@ -86,7 +86,7 @@ var questions = [
         correct: "A"
     },
     {
-        question: "What opening/closing pair would you use to establish an array??",
+        question: "What opening/closing pair would you use to establish an array?",
         choiceA: "()",
         choiceB: "[]",
         choiceC: "{}",
@@ -212,7 +212,6 @@ function saveScore(){
     sortScores();
 
 
-    highScoresDiv.innerHTML = "<p>"+playerName+" "+score * 10+"</p>";
 
     
 }
@@ -231,6 +230,19 @@ function sortScores() {
 
     console.log(dictionary);
 
+    highScoreRender(dictionary);
+}
+
+function highScoreRender(dictionary) {
+    highScoresDiv.innerHTML = "<table>"
+    highScoresDiv.innerHTML += `<tr><th>"NAME"</td><td>"SCORE"</td></tr>`;
+    for(var k = 0; k < 10; k++){
+    highScoresDiv.innerHTML += `<tr><td> ${dictionary[k][0]}</td><td>${dictionary[k][1] * 10}</td></tr>`;
+
+    console.log(highScoresDiv.innerHTML)
+    }
+
+    console.log(highScoresDiv.innerHTML)
 }
 
 // score render
