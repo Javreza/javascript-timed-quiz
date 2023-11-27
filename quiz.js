@@ -63,7 +63,7 @@ var questions = [
     },
     {
         question: "How could you make an html file reference a javascript file titled 'scripted'?",
-        choiceA: "<script rel='scripted.js' src='sripted.js'",
+        choiceA: "'<script rel='scripted.js' src='sripted.js'",
         choiceB: "<script rel='scripted' src='javascript.js'></script>",
         choiceC: "<script src='javascript.js'></script>",
         choiceD: "<script src='scripted.js'></script>",
@@ -71,7 +71,7 @@ var questions = [
     },
     {
         question: "What method would you use to alter the styling of an element with JavaScript?",
-        choiceA: ".setAttribute()",
+        choiceA: "'.setAttribute()'",
         choiceB: ".setElementStyle()",
         choiceC: ".alterElement()",
         choiceD: ".styleAttributes()",
@@ -198,6 +198,7 @@ function saveScore(){
     var playerName = window.prompt("Please enter name");
     highScoresDiv.style.display = "block";
     var highscore = localStorage.getItem(playerName);
+
     if(highscore !== null){
         if (score > highscore) {
             localStorage.setItem(playerName, score);
@@ -209,7 +210,47 @@ function saveScore(){
         localStorage.getItem(playerName, score);
     }
 
-    highScoresDiv.innerHTML = "<p>"+playerName+" "+score * 10+"</p>";
+    
+
+    sortScores();
+
+}
+
+function sortScores() {
+
+    var dictionary = [];
+
+    for(var i = 0; i < localStorage.length; i++){
+
+        if(dictionary.length < 0){
+
+            for(var j = 0; j < dictionary.length; j++){
+
+                if(dictionary[i][1] >= localStorage.getItem(localStorage.key(i))){
+
+                    dictionary.push([localStorage.key(i) , localStorage.getItem(localStorage.key(i))]);
+
+                }
+                if(dictionary[i][1] < localStorage.getItem(localStorage.key(i))){
+
+                    var temp = dictionary[i]
+
+                    dictionary[i] = [localStorage.key(i) , localStorage.getItem(localStorage.key(i))];
+
+                    dictionary.push(temp);
+                    highScoresDiv.innerHTML = "<p>"+playerName+" "+score * 10+"</p>";
+
+                }
+
+            }
+
+        }
+
+        dictionary.push([localStorage.key(i) , localStorage.getItem(localStorage.key(i))]);
+
+    }
+
+    console.log(dictionary)
 
 }
 
